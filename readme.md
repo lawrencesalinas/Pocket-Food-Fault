@@ -1,6 +1,10 @@
 
 # Vacation Buddy
 
+## About
+The app is designed to recommened places to visit on the desired destination.
+show detailed information on the top rated landmarks and restaurants to visit.
+
 ## tech stack
 + Javascript
 + CSS
@@ -16,12 +20,10 @@
 + TripAdvisor Api
 
 ## Models
-+ User information
-+ 
++ User 
++ Landmarks
++ restaurant
 
-## About
-The app is designed to recommened places to visit on the desired destination.
-show detailed information on the top rated landmarks and restaurants to visit.
 
 ## MVP
 + create an index page to sign up
@@ -34,6 +36,6 @@ show detailed information on the top rated landmarks and restaurants to visit.
 + add hotels pricings
 + add flights 
 
-![Screen Shot 2021-11-12 at 3 41 30 PM](https://user-images.githubusercontent.com/22379194/141532087-051d9432-e72d-4bbc-bdcf-5d950b617bc8.png)
+![Screen Shot 2021-11-12 at 3 48 39 PM](https://user-images.githubusercontent.com/22379194/141532749-3ee6810a-7812-401e-bd02-5081f98874fe.png)
 
 
