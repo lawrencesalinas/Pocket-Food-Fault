@@ -34,4 +34,6 @@ show detailed information on the top rated landmarks and restaurants to visit.
 + add hotels pricings
 + add flights 
 
+![Screen Shot 2021-11-12 at 3 41 30 PM](https://user-images.githubusercontent.com/22379194/141532087-051d9432-e72d-4bbc-bdcf-5d950b617bc8.png)
+
 
