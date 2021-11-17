@@ -1,1 +1,33 @@
-<h2>Express Auth Boilerplate Home Page</h2>
+<form method = "GET" action = "restaurants/results">
+<!-- <label for="foodSearch">Search by:</label>
+<select name="searchFood" id="searchFood">
+  <option value="currentLocation" name = "currentLocation">current Location</option>
+  <option value="zip code" name = "zipcode">zipcode</option>
+  <option value="cuisine" name = "cuisine">cuisine</option>
+  <option value="name" name = "name">name</option>
+</select> -->
+<input type = "text" name = "zipCode">
+<input type = "submit" ></input>
+</form>
+
+<h1>helo</h1>
+
+
+
+
+
+<script>
+if('geolocation' in navigator){
+  console.log('geo available')
+  navigator.geolocation.getCurrentPosition(position =>{
+
+     const lat =  position.coords.latitude
+     const lon = position.coords.longitude
+      console.log(lat);
+      console.log(lon);
+  })
+} else {
+    console.log('geo not available')
+  }
+</script>
+

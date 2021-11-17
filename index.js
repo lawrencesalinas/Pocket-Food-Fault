@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require('axios').default
 
 
 // views (ejs and layouts) set up
@@ -43,16 +44,29 @@ app.use('/auth', require('./controllers/auth'))
 
 // home route
 app.get('/', (req, res)=>{
+
+
+    // res.send(apiResponse)
     res.render('home')
 })
 
+
+
+
+
+
+
+
 // profile route
 app.get('/profile', isLoggedIn, (req, res)=>{
-    res.render('profile')
+    res.render('profile.ejs')
 })
 
+app.use('/restaurants', require('./controllers/restaurants.js'))
 
-app.listen(8000, ()=>{
+
+
+app.listen(3000, ()=>{
     console.log(`process.env.SUPER_SECRET_SECRET ${process.env.SUPER_SECRET_SECRET}`)
     console.log("auth_practice running on port 3000")
 })
