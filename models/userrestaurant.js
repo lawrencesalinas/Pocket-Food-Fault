@@ -10,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // models.userRestaurant.belongsTo(models.user)
-      // models.userRestaurant.belongsTo(models.restaurant)
+      models.userRestaurant.belongsTo(models.user)
+      models.userRestaurant.belongsTo(models.restaurant)
+      
     }
   };
   userRestaurant.init({
     userId: DataTypes.INTEGER,
-    restaurantId: DataTypes.INTEGER
+    restaurantId: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'userRestaurant',

@@ -21,7 +21,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       phoneNumber: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      restaurantId: {
+        type: Sequelize.BIGINT        
       },
       createdAt: {
         allowNull: false,

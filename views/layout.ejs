@@ -8,9 +8,13 @@
 </head>
 <body>
     <header>
-        <h1>Express Authentication Boilerplate</h1>
-        <nav>
-            <ul>
+      <a href = "/">Home</a>
+      <a href = "/restaurants">restaurants</a>
+      <a href = "/profile">My Profile</a>
+      <a href= "/restaurants/searchHistory">search history</a>
+   
+       
+      
               <% if (!currentUser) { %>
                 <li><a href="/auth/signup">Signup</a></li>
                 <li><a href="/auth/login">Login</a></li>
@@ -18,8 +22,7 @@
                 <li><a href="/auth/logout">Logout</a></li>
                 <li><a href="/profile">Profile</a></li>
               <% } %>
-            </ul>
-          </nav>
+      
     </header>
     <%- include('partials/alerts') %>
     <%- body %> 

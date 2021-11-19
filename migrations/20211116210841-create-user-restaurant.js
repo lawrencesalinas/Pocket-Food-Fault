@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       restaurantId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       createdAt: {
         allowNull: false,

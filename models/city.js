@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // models.city.hasMany(models.restaurant)
-      models.city.belongsTo(models.user)
+      // models.city.belongsTo(models.user)
      
     }
   };

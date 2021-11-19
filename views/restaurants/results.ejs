@@ -2,14 +2,22 @@
 
 
 <%if(results === undefined) {%>
-    <h3>No Movies Found</h3>
+    <h3>No restaurants found</h3>
     <small>check your spelling and punctuation and try again</small>
 <%} else {%>
     <ul>
         <%results.data.forEach(result =>{%>
-            <li><%=result.restaurant_name%></li>
-            <form method="POST" action="/restaurants">
+            <li><a href = '/restaurants/<%=result.restaurant_id%>'><%=result.restaurant_name%></a></li>
+        
+            
+            <form method="POST" action="/profile">
                 <input hidden type="text" name="name" value="<%= result.restaurant_name %>">
+                <input hidden type="text" name="address" value="<%= result.address.formatted %>">
+                <input hidden type="text" name="hours" value="<%= result.hours %>">
+                <input hidden type="text" name="phoneNumber" value="<%= result.restaurant_name %>">
+                <input hidden type="text" name="restaurantId" value="<%= result.restaurant_id %>">
+                <input hidden type="text" name="cityId" value="">
+                
                 <button class="btn btn-primary" type="submit">Add to My restaurants</button>
               </form>
             <%})%>

@@ -1,0 +1,9 @@
+<h1>history results</h1>
+<%results.forEach(result => {%>
+    <h3>
+        <%= result.name %></a>
+    </h3>
+    <form action="/profile/<%= result.restaurant_id %>?_method=DELETE" method="post">
+        <button type="submit" class="btn btn-danger">Remove From Faves</button>
+    </form>
+<%})%>
