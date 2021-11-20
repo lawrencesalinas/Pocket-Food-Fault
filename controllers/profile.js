@@ -12,10 +12,10 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 router.get('/',isLoggedIn, (req, res) => {
   
   db.user.findByPk(res.locals.currentUser.id, {include: [db.restaurant] })
-  .then(found => {
-    // console.log(found.dataValues.restaurants)
-   const names = found.dataValues.restaurants
-   res.render('profile/index.ejs', {results:names})
+  .then(foundUser => {
+   const names = foundUser.restaurants
+ 
+   res.render('profile/index.ejs', {foundUser, results:names})
   })
   })
      
@@ -25,7 +25,7 @@ router.get('/',isLoggedIn, (req, res) => {
 
 //-------user and restaurant data association---//
 router.post('/',isLoggedIn,(req, res) => {
-  const formDataName = req.body.n
+  
   const formDataId = req.body.restaurantId
   db.user.findByPk(res.locals.currentUser.id)
   .then(foundUser => {
@@ -33,55 +33,70 @@ router.post('/',isLoggedIn,(req, res) => {
       where: {restaurantId:formDataId}
     })
     .then( foundRestaurant => {
-      // foundUser.addRestaurant(foundRestaurant.)
-      // foundUser.addRestaurant(foundRestaurant.name)
-      foundUser.addRestaurant(foundRestaurant.restaurantId)
+      // foundUser.addRestaurant(foundRestaurant.restaurantId)
       foundUser.addRestaurant(foundRestaurant)
-      // foundUser.addRestaurant(foundRestaurant.name)
-
     })
    })
 })
 
+router.get('/:id', (req, res) => {
+  console.log('this is the fave id\n', req.params.id)
+  const restaurantId = req.params.id
+  let docuMenu = `https://api.documenu.com/v2//restaurant/${restaurantId}?key=${process.env.NEW_API}`
+  
+  axios.get(docuMenu)
+  .then(apiResponse => {
     
-router.delete('/:id', (req, res) => {
-  // console.log('this is the id\n', req.params.id)
-  db.restaurant.destroy({
-      where: { id: req.params.id }
-  })
-  .then(deletedItem => {
-      // destroy returns '1' if something was deleted and '0' if nothing happened
-      console.log('you deleted: ', deletedItem)
-      res.redirect('/')
+  const results = apiResponse.data.result
+ const name = results.restaurant_name
+ const address = results.address.formatted
+ const cuisines = results.cuisines
+ const hours = results.hours
+ const menus = results.menus
+ menus.forEach(menu => {
+   menu.menu_sections.forEach(section => {
+     
+    //  const section = section.section_name
+    //  res.render('restaurants/show.ejs', {items: section})
+    //  console.log(item.section_name);   
+     section.menu_items.forEach(more => {
+      //  console.log(more.name)   item name
+     })
+   })
+ })
+ res.render('restaurants/show.ejs', {name:name, address:address, cuisines:cuisines, menus:menus, hours:hours})
   })
   .catch(error => {
-      console.error
-  })
+    console.log(error)
+})
 })
 
 
 
 
-  // router.get('/', (req,res) => {
-  //   db.restaurant
-  // })
-  // we need a post route that will save a fave
-  // the url endpoint we'll be using for creating a fave will be this:
-  // '/faves/addFave'
-  // router.post('/', (req, res) => {
-  //   // const data = JSON.parse(JSON.stringify(req.body))
-  //   // console.log('this is data', data)
-  //   db.user.findAll()
-  //   .then(foundUser=> {
-  //       db.restaurant.findByPk()
-  //       .then(foundRestaurant => {
-  //           foundUser.addRestaurant(foundRestaurant)
-  //       })
-  //     })
-  // //   })
-  //       // we can also use console.error
-  //   })
-  
+
+    
+router.delete('/:id' ,isLoggedIn, (req, res) => {
+  console.log('DELETE')
+ 
+   db.userRestaurant.destroy({
+     where: {restaurantId: req.params.id, userId:res.locals.currentUser.id }
+   }) 
+.then(deletedItem => {
+  if(deletedItem === 1){
+    console.log('Deleted successfully');
+  }
+  res.redirect('/profile')
+})
+  })
+
+
+
+
+
+
+
+
 
 
 

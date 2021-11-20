@@ -10,7 +10,7 @@
             <li><a href = '/restaurants/<%=result.restaurant_id%>'><%=result.restaurant_name%></a></li>
         
             
-            <form method="POST" action="/profile">
+            <form method="POST" action="/profile/">
                 <input hidden type="text" name="name" value="<%= result.restaurant_name %>">
                 <input hidden type="text" name="address" value="<%= result.address.formatted %>">
                 <input hidden type="text" name="hours" value="<%= result.hours %>">

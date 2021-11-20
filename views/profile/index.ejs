@@ -6,6 +6,15 @@
 
   
     <% results.forEach(result =>{ %>
-        <li><%= result.name %></li>
+        <li><a href = "/profile/<%= result.restaurantId%>"><%= result.name %></a></li>
+        <%= result.restaurantId%>  <br>
+        <%= result.id%>
+        <form method = "POST" action= "/profile/<%= result.id%>?_method=DELETE">
+          
+          <button type="submit" class="btn btn-danger">Remove From Faves</button>
+
+        </form> 
+
+
   <%  })%>
     </ul>
