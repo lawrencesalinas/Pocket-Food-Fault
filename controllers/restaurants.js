@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 //-zipcode search api call to render results-//
   let  zipCode = req.query.zipCode
-  let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=2&key=${process.env.NEW_API}`
+  let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&key=${process.env.NEW_API}`
     axios.get(docuMenuTest)
     .then(apiResponse => {
     const formData = apiResponse.data
@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
       const restaurantId = data.restaurant_id
         db.restaurant.findOrCreate({  
           where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantId:restaurantId} 
-   // restaurantId: formData.restaurantId, phoneNumber: phoneNumber }
           })
         .then(foundRestaurant => {
           foundRestaurant

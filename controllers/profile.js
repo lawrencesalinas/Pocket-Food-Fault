@@ -6,86 +6,43 @@ const restaurant = require('../models/restaurant')
 const user = require('../models/user')
 const { render } = require('ejs')
 const flash = require('connect-flash')
+const isLoggedIn = require('../middleware/isLoggedIn')
 
-
-// router.get('/', (req, res) => {
-//     db.restaurant.findAll()
-//     .then(foundRestaurant => {
-//       res.render('faves/faveRestaurants.ejs', {results: foundRestaurant})
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     })
-//   })
-
-  //  console.log(req.user)
-  // router.post('/',(req, res) => {
-  //   const formData = req.body.restaurantId 
-    
-  // console.log(formData);
-//     db.userRestaurant.create({
-//         // restaurantId : req.body.restaurantId,
-//         // name: req.body.name
-//         // userId: res.locals.currentUser.id,
-       
-//         // console.log(req.body.recipeLabel)
-//         // console.log(req.body.recipeUrl)
-//     })
-//     .then(created =>{
-//         console.log(created)
-//         res.redirect('/profile')
-//     })
-//     .catch(err =>{
-//         console.log(err)
-//     })
-// })
-
-
-
-
-
-
-
-
-
-
-
-router.post('/',(req, res) => {
-  const formData = req.body.restaurantId 
-  // console.log(res.locals.currentUser.id);
-console.log(formData);
-  db.user.create({
-        restaurantId : req.body.restaurantId,
-        // UserId: res.locals.currentUser.id
-
-    })
-
-
-  .then(foundUser => {
-    db.restaurant.findbyPk(req.body.restaurantId)
-    .then( foundRestaurant => {
-      foundUser.addRestaurant(foundRestaurant)
-      
-    })
+//------render the my profile, favorite restaurant----//
+router.get('/',isLoggedIn, (req, res) => {
+  
+  db.user.findByPk(res.locals.currentUser.id, {include: [db.restaurant] })
+  .then(found => {
+    // console.log(found.dataValues.restaurants)
+   const names = found.dataValues.restaurants
+   res.render('profile/index.ejs', {results:names})
   })
+  })
+     
+
+
+
+
+//-------user and restaurant data association---//
+router.post('/',isLoggedIn,(req, res) => {
+  const formDataName = req.body.n
+  const formDataId = req.body.restaurantId
+  db.user.findByPk(res.locals.currentUser.id)
+  .then(foundUser => {
+    db.restaurant.findOne({
+      where: {restaurantId:formDataId}
+    })
+    .then( foundRestaurant => {
+      // foundUser.addRestaurant(foundRestaurant.)
+      // foundUser.addRestaurant(foundRestaurant.name)
+      foundUser.addRestaurant(foundRestaurant.restaurantId)
+      foundUser.addRestaurant(foundRestaurant)
+      // foundUser.addRestaurant(foundRestaurant.name)
+
+    })
+   })
 })
 
-// router.post('/addFave', (req, res) => {
-//   const data = JSON.parse(JSON.stringify(req.body))
-//   console.log('this is data', data)
-//   db.favorite.create({
-//       title: data.title,
-//       imdbId: data.imdbId
-//   })
-//   .then(createdFave => {
-//       console.log('db instance created: \n', createdFave)
-//       res.redirect(`/faves/${createdFave.id}`)
-//   })
-//   .catch(error => {
-//       console.log(error)
-//           // we can also use console.error
-//   })
-// })
     
 router.delete('/:id', (req, res) => {
   // console.log('this is the id\n', req.params.id)

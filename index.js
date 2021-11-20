@@ -35,6 +35,7 @@ app.use((req, res, next) => {
     // before every route, attach the flash messages and current user to res.locals
     res.locals.alerts = req.flash();
     res.locals.currentUser = req.user;
+    
    
     next()
 })
@@ -59,9 +60,9 @@ app.get('/', (req, res)=> {
 
 
 // profile route
-app.get('/profile', isLoggedIn, (req, res)=>{
-    res.render('profile.ejs')
-})
+// app.get('/profile', isLoggedIn, (req, res)=>{
+//     res.render('profile.ejs')
+// })
 
 app.use('/restaurants', require('./controllers/restaurants.js'))
 app.use('/profile', require('./controllers/profile.js'))
