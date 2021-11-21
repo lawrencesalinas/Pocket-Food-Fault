@@ -1,0 +1,21 @@
+<h1>All Your Favorite Restaurants</h1>
+
+    <ul>
+
+
+
+  
+    <% results.forEach(restaurant =>{ %>
+        <li><a href = "/profile/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a></li>
+        <%= restaurant.restaurantId%>  <br>
+        <%= restaurant.id%>
+        <form method = "POST" action= "/profile/restaurants/<%= restaurant.id%>?_method=DELETE">
+          
+          <button type="submit" class="btn btn-danger">Remove From Faves</button>
+
+        </form> 
+
+        
+  <%  })%>
+    </ul>
+

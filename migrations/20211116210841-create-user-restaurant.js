@@ -15,6 +15,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       restaurantId: {
+        type: Sequelize.BIGINT
+      },
+      restaurantCode: {
         type: Sequelize.BIGINT        
       },
       createdAt: {

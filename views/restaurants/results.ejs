@@ -1,31 +1,18 @@
 <h1>results</h1>
-
-
-<%if(results === undefined) {%>
-    <h3>No restaurants found</h3>
-    <small>check your spelling and punctuation and try again</small>
-<%} else {%>
-    <ul>
-        <%results.data.forEach(result =>{%>
-            <li><a href = '/restaurants/<%=result.restaurant_id%>'><%=result.restaurant_name%></a></li>
+<% if(results === undefined) {%>
+    <h3>results not found</h3>
+<% } %>
+<ul>
+    <%results.forEach(restaurant => { %>
         
-            
-            <form method="POST" action="/profile/">
-                <input hidden type="text" name="name" value="<%= result.restaurant_name %>">
-                <input hidden type="text" name="address" value="<%= result.address.formatted %>">
-                <input hidden type="text" name="hours" value="<%= result.hours %>">
-                <input hidden type="text" name="phoneNumber" value="<%= result.restaurant_phone %>">
-                <input hidden type="text" name="restaurantId" value="<%= result.restaurant_id %>">
-                <input hidden type="text" name="cityId" value="">
-                
-                <button class="btn btn-primary" type="submit">Add to My restaurants</button>
-              </form>
-            <%})%>
-    </ul>
-<%}%>
+        <li>
+            <a href="/travelBuddy/<%=restaurant.id%>">
+                <%=restaurant.name%>
 
+            </a>
+        </li>
+<% })%>
 
-
-
+</ul>
 
 <a href="/">Back to home</a>

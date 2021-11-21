@@ -1,0 +1,19 @@
+<h1><%= name %></h1>
+<br>
+<h3>Address: <%= address  %></h3>
+<h3>hours: <%= hours %> </h3>
+<h3>Phone: <%= phoneNumber %></h3>
+<h6>restaurant code: <%= restaurantCode %></h6>
+
+<form method = "POST" action = "/profile/restaurants/add">
+    <input hidden type = "text" name = "name" value = "<%= name %>">
+    <input hidden type = "text" name = "address" value = "<%= address %>">
+    <input hidden type = "text" name = "hours" value = "<%= hours %>">
+    <input hidden type = "text" name = "phoneNumber" value = "<%= phoneNumber %>">
+    <input hidden type = "text" name = "restaurantCode" value = "<%= restaurantCode %>">
+    <input hidden type = "text" name = "restaurantId" value = "<%= restaurantId %>">
+    <button type="submit">Add to Favorites</button>
+</form>
+<br>
+<br>
+<a href = "/profile/restaurants/edit/<%= restaurantId %>">add or edit</a>

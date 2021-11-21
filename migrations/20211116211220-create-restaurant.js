@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       cityId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       address: {
         type: Sequelize.STRING
@@ -23,7 +23,7 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
-      restaurantId: {
+      restaurantCode: {
         type: Sequelize.BIGINT        
       },
       createdAt: {

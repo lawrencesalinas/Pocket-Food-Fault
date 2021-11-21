@@ -29,6 +29,8 @@ app.use(passport.session())
 
 // flash middleware (must go AFTER session middleware)
 app.use(flash())
+app.use(express.static(__dirname +'/public'))
+app.use(express.static("public"))
 
 app.use(methodOverride('_method'))
 // custom middleware
@@ -65,8 +67,9 @@ app.get('/', (req, res)=> {
 //     res.render('profile.ejs')
 // })
 
-app.use('/restaurants', require('./controllers/restaurants.js'))
+app.use('/travelBuddy', require('./controllers/indexRoute.js'))
 app.use('/profile', require('./controllers/profile.js'))
+app.use('/profile/restaurants', require('./controllers/restaurantRoute.js'))
 
 
 app.listen(3000, ()=>{
