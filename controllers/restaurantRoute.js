@@ -21,6 +21,47 @@ router.get('/',isLoggedIn, (req, res) => {
     })
 })
 
+router.get('/results', (req, res) => {
+
+    //-request data from the api-//
+      let  zipCode = req.query.zipCode
+      let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&key=${process.env.NEW_API}`
+      axios.get(docuMenuTest)
+      .then(apiResponse => {
+        const formData = apiResponse.data
+        formData.data.forEach(data => {
+          const name = data.restaurant_name
+          const address = data.address.formatted
+          const hours = data.hours
+          const phoneNumber = data.restaurant_phone
+          const restaurantCode = data.restaurant_id
+      //-add requested data to api restaurant database-//
+          db.restaurant.findOrCreate({  
+            where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantCode:restaurantCode} 
+           })
+           .then(created =>{
+            //  console.log(created);
+           })
+           .catch(error => {
+            console.log(error )
+          })
+            })
+    
+         })
+      //-render restaurant searches coming form restaurant database-//   
+         db.restaurant.findAll()
+          .then(restaurant => {
+            
+            res.render('profile/restaurants/results.ejs', {results:restaurant})
+          })
+          .catch(error => {
+            console.log(error )
+          })
+        })
+
+
+
+
 //-------------POST route to add a restaurant on users profile----//
 router.post('/add',isLoggedIn,(req, res) => {
     // console.log(req.body);
@@ -58,19 +99,16 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
   router.put('/:idx', (req, res) => {
 
     db.restaurant.update({
+        name: req.body.name
+    }, {
         where: { id: req.body.restaurantId } 
-      })
+    })
       .then(foundRestaurant =>{
-          console.log(foundRestaurant)
+      
     //re-assign the name and type fields of the dinosaur to be editted
-        console.log(foundRestaurant.name = req.body.name)
+ 
 
-    // dinoData[req.params.idx].name = req.body.name
-    // dinoData[req.params.idx].type = req.body.type
-    //  // save the editted dinosaurs to the data.json file
-    // fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
-    // res.redirect('/dinosaurs');
-    // console.log(req.body);
+   
     res.redirect(`/profile/restaurants/${req.body.restaurantId}`);
   })
  

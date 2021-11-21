@@ -1,5 +1,10 @@
 <h2><%= currentUser.name %>'s Profile</h2>
 
+<form method = "GET" action = "/profile/restaurants/results">
+    <label for= "categories">Search by:</label>
+    <input type = "text" name = "zipCode">
+    <input type= "submit">
+    </form>
 
 <h2><a href="/profile/restaurants">My Restaurants</a></h2>
 <br>

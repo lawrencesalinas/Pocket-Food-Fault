@@ -1,0 +1,18 @@
+<h1>results</h1>
+<% if(results === undefined) {%>
+    <h3>results not found</h3>
+<% } %>
+<ul>
+    <%results.forEach(restaurant => { %>
+        
+        <li>
+            <a href="/profile/restaurants/<%=restaurant.id%>">
+                <%=restaurant.name%>
+
+            </a>
+        </li>
+<% })%>
+
+</ul>
+
+<a href="/">Back to home</a>
