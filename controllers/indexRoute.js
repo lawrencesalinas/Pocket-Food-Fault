@@ -48,16 +48,6 @@ router.get('/', (req, res) => {
 
 
 
-// //----show search history ------//
-// router.get('/searchHistory', (req, res) => {
-//   db.restaurant.findAll()
-//   .then(foundRestaurant => {
-//     res.render('restaurants/searchHistory.ejs', {results: foundRestaurant})
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   })
-// })
 
 
 
@@ -78,10 +68,6 @@ router.get('/:id',(req, res) => {
     console.log(error )
   })
 })
-
-
-
-
 
 
 

@@ -10,7 +10,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 
 //------render the my profile, favorite restaurant----//
 router.get('/',isLoggedIn, (req, res) => {
-  res.render('profile/index.ejs')
+  res.render('profile/profileIndex.ejs')
 })
 
 

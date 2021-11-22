@@ -25,7 +25,7 @@ router.get('/results', (req, res) => {
 
     //-request data from the api-//
       let  zipCode = req.query.zipCode
-      let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&key=${process.env.NEW_API}`
+      docuMenuTest =`https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&fullmenu=true&top_cuisines=true&key=${process.env.NEW_API}`
       axios.get(docuMenuTest)
       .then(apiResponse => {
         const formData = apiResponse.data
@@ -53,9 +53,11 @@ router.get('/results', (req, res) => {
           .then(restaurant => {
             
             res.render('profile/restaurants/results.ejs', {results:restaurant})
+            
           })
           .catch(error => {
             console.log(error )
+          
           })
         })
 
@@ -105,11 +107,7 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
     })
       .then(foundRestaurant =>{
       
-    //re-assign the name and type fields of the dinosaur to be editted
- 
-
-   
-    res.redirect(`/profile/restaurants/${req.body.restaurantId}`);
+   res.redirect(`/profile/restaurants/${req.body.restaurantId}`);
   })
  
 })
