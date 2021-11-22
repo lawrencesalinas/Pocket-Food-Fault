@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-    
+  
        <div class = "main-container">
          <div class = "row ">
            <div class = "login-out col-md-7 offset-1">
@@ -24,9 +24,11 @@
           <% } else { %>
             <a class = "top-navs" href="/profile">Profile</a>
             <a class= "login-out" href="/auth/logout">Logout</a>
-          <% } %></div>
+          <% } %>
+        </div>
 
          </div>
+         
          <%- include('partials/alerts') %>
          <%- body %>
        </div>

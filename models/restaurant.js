@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     cityId: DataTypes.BIGINT,
     address: DataTypes.STRING,
     hours: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    cuisine: DataTypes.STRING,
+    menu: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     restaurantCode: DataTypes.BIGINT
   }, {

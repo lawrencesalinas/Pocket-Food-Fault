@@ -1,12 +1,9 @@
 <h1>All Your Favorite Restaurants</h1>
 
+<div class = "profile-restaurants"
     <ul>
-
-
-
-  
     <% results.forEach(restaurant =>{ %>
-        <li><a href = "/profile/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a></li>
+        <li><a href = "travelBuddy/<%=restaurant.id%>"><%= restaurant.name %></a></li>
         <%= restaurant.restaurantId%>  <br>
         <%= restaurant.id%>
         <form method = "POST" action= "/profile/restaurants/<%= restaurant.id%>?_method=DELETE">

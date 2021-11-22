@@ -21,45 +21,8 @@ router.get('/',isLoggedIn, (req, res) => {
     })
 })
 
-router.get('/results', (req, res) => {
 
-    //-request data from the api-//
-      let  zipCode = req.query.zipCode
-      docuMenuTest =`https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&fullmenu=true&top_cuisines=true&key=${process.env.NEW_API}`
-      axios.get(docuMenuTest)
-      .then(apiResponse => {
-        const formData = apiResponse.data
-        formData.data.forEach(data => {
-          const name = data.restaurant_name
-          const address = data.address.formatted
-          const hours = data.hours
-          const phoneNumber = data.restaurant_phone
-          const restaurantCode = data.restaurant_id
-      //-add requested data to api restaurant database-//
-          db.restaurant.findOrCreate({  
-            where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantCode:restaurantCode} 
-           })
-           .then(created =>{
-            //  console.log(created);
-           })
-           .catch(error => {
-            console.log(error )
-          })
-            })
-    
-         })
-      //-render restaurant searches coming form restaurant database-//   
-         db.restaurant.findAll()
-          .then(restaurant => {
-            
-            res.render('profile/restaurants/results.ejs', {results:restaurant})
-            
-          })
-          .catch(error => {
-            console.log(error )
-          
-          })
-        })
+
 
 
 
@@ -98,19 +61,6 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
   })
     
 
-  router.put('/:idx', (req, res) => {
-
-    db.restaurant.update({
-        name: req.body.name
-    }, {
-        where: { id: req.body.restaurantId } 
-    })
-      .then(foundRestaurant =>{
-      
-   res.redirect(`/profile/restaurants/${req.body.restaurantId}`);
-  })
- 
-})
 
 
 
@@ -130,7 +80,7 @@ router.get('/:id',isLoggedIn,(req, res) => {
         res.render('profile/restaurants/detail.ejs', 
         {name: foundRestaurant.name, address: foundRestaurant.address, 
         hours: foundRestaurant.hours, phoneNumber: foundRestaurant.phoneNumber, 
-        restaurantCode: foundRestaurant.restaurantCode, restaurantId: foundRestaurant.id })
+        restaurantCode: foundRestaurant.restaurantCode, cuisine:foundRestaurant.cuisine, restaurantId: foundRestaurant.id })
     })
     .catch(error => {
       console.log(error )
