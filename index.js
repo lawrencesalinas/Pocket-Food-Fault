@@ -70,9 +70,9 @@ app.get('/', (req, res)=> {
 app.use('/travelBuddy', require('./controllers/indexRoute.js'))
 app.use('/profile', require('./controllers/profile.js'))
 app.use('/profile/restaurants', require('./controllers/restaurantRoute.js'))
+app.use('/menus', require('./controllers/menus.js'))
 
-
-app.listen(3000, ()=>{
+app.listen(process.env.PORT  || 3000, ()=>{
     console.log(`process.env.SUPER_SECRET_SECRET ${process.env.SUPER_SECRET_SECRET}`)
     console.log("auth_practice running on port 3000")
 })

@@ -38,6 +38,9 @@ module.exports = {
       restaurantCode: {
         type: Sequelize.BIGINT        
       },
+      zipcode: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

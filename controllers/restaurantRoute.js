@@ -23,10 +23,6 @@ router.get('/',isLoggedIn, (req, res) => {
 
 
 
-
-
-
-
 //-------------POST route to add a restaurant on users profile----//
 router.post('/add',isLoggedIn,(req, res) => {
     // console.log(req.body);
@@ -60,14 +56,6 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
       })
   })
     
-
-
-
-
-
-
-
-
 
 
 //------------GET route for users' detailed restaurants----//

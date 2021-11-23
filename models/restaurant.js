@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     hours: DataTypes.STRING,
     city: DataTypes.STRING,
+    zipcode: DataTypes.INTEGER,
     state: DataTypes.STRING,
     cuisine: DataTypes.STRING,
     menu: DataTypes.STRING,

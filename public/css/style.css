@@ -12,7 +12,7 @@ body{
 }
 
 .main-container {
-    background: rgba(255, 255, 255, .9);
+    background: rgba(238, 211, 211, 0.9);
     width: 75%;
     height: 100%;
     margin-bottom: 2%;
@@ -80,6 +80,7 @@ body{
 .detail-page{
     margin-top: 3%;
    margin-left: 3%;
+   color:rgb(29, 85, 148)
 
 }
 
@@ -96,7 +97,7 @@ body{
 .profile-container{
     background-color: rgb(189, 81, 81, .5);
     height:90vh;
-    margin-top:5%;
+    margin-top:3%;
 }
 
 .searchBox-profile{
@@ -109,7 +110,16 @@ body{
 }
 
 .my{
+    font-size: 1.4em;
     text-decoration: none;
     color: rgb(76, 76, 143);
 }
 
+.profile-restaurants{
+    margin-top: 5%;
+}
+
+.header{
+    margin-left: 3%;
+}
+    

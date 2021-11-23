@@ -20,10 +20,18 @@ router.get('/', (req, res) => {
       const address = data.address.formatted
       const city = data.address.city
       const state = data.address.state
-      const cuisines = data.cuisines
       const hours = data.hours
+      const zipcode = data.address.zipcode
       const phoneNumber = data.restaurant_phone
       const restaurantCode = data.restaurant_id
+     
+      const menu = data.menus
+      menu.forEach(menu =>{
+        console.log(menu.section_name);
+       
+      })
+      
+ 
      
   //-add requested data to api restaurant database-//
       db.restaurant.findOrCreate({  
@@ -39,19 +47,18 @@ router.get('/', (req, res) => {
 
      })
   //-render restaurant searches coming form restaurant database-//   
-     db.restaurant.findAll()
+     db.restaurant.findAll({
+      where: { zipcode: req.body.zipCode } 
+     })
       .then(restaurant => {
         
-        res.render('restaurants/results.ejs', {results:restaurant , zipCode:zipCode})
+        res.render('restaurants/results.ejs', {results:restaurant })
       })
       .catch(error => {
         console.log(error )
       })
     })
 // //------------------------------------------------------------------------//
-
-
-
 
 
 
@@ -74,20 +81,20 @@ router.get('/:id',(req, res) => {
 })
 
 router.put('/:idx', (req, res) => {
-
-  db.restaurant.update({
+ db.restaurant.update({
       name: req.body.name, 
       address: req.body.address, hours:req.body.hours,
       phoneNumber:  req.body.phoneNumber
   }, {
       where: { id: req.body.restaurantId } 
   })
-    .then(foundRestaurant =>{
-    
+    .then(foundRestaurant =>{   
  res.redirect(`/travelBuddy/${req.body.restaurantId}`);
 })
 
 })
+
+
 
 
 
