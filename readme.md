@@ -1,9 +1,13 @@
 
-# Vacation Buddy
+# Pocket Food Vault 
 
 ## About
 The app is designed to recommened places to visit on the desired destination.
 show detailed information on the top rated landmarks and restaurants to visit.
+App is stil under construction. for now restaurant functionality works.
+the app currently allow users to search for restaurants on a specific zip codes.
+
+
 
 ## tech stack
 + Javascript
@@ -15,13 +19,10 @@ show detailed information on the top rated landmarks and restaurants to visit.
 + ejs-layouts
 
 ## API to use
-+ TripAdvisor Api
-+ Amadeus API
-
-
++ Documenu
+  
 ## Models
 + User 
-+ Landmarks
 + restaurants
 
 
@@ -33,7 +34,7 @@ show detailed information on the top rated landmarks and restaurants to visit.
 + create links to go back to the  home page, attractions page.
 
 ## Stretch
-+ add hotels pricings
++ add hotel pricings
 + add flights 
 
 ![Screen Shot 2021-11-12 at 3 48 39 PM](https://user-images.githubusercontent.com/22379194/141532749-3ee6810a-7812-401e-bd02-5081f98874fe.png)

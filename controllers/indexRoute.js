@@ -3,6 +3,7 @@ const router = express.Router()
 const axios = require('axios')
 const db = require('../models')
 const restaurant = require('../models/restaurant')
+const { render } = require('ejs')
 
 
 
@@ -21,38 +22,33 @@ router.get('/', (req, res) => {
       const city = data.address.city
       const state = data.address.state
       const hours = data.hours
-      const zipcode = data.address.zipcode
+      const zipcode = data.address.postal_code
       const phoneNumber = data.restaurant_phone
       const restaurantCode = data.restaurant_id
-     
+    
       const menu = data.menus
-      menu.forEach(menu =>{
-        console.log(menu.section_name);
-       
-      })
-      
- 
-     
-  //-add requested data to api restaurant database-//
+  
+  // -add requested data to api restaurant database-//
       db.restaurant.findOrCreate({  
-        where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantCode:restaurantCode, city:city, state:state}
+        where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantCode:restaurantCode, city:city, state:state, zipcode:zipcode}
        })
        .then(created =>{
-        //  console.log(created);
+      
        })
+      
        .catch(error => {
         console.log(error )
       })
         })
 
      })
-  //-render restaurant searches coming form restaurant database-//   
+  // -render restaurant searches coming form restaurant database-//   
      db.restaurant.findAll({
-      where: { zipcode: req.body.zipCode } 
+      where: { zipcode: req.query.zipCode } 
      })
       .then(restaurant => {
         
-        res.render('restaurants/results.ejs', {results:restaurant })
+        res.render('restaurants/results.ejs', {results:restaurant, zipcode:req.query.zipCode })
       })
       .catch(error => {
         console.log(error )
