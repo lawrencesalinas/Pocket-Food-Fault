@@ -10,7 +10,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 
 //-----------GET route to render a list of the users favorite restaurants--//
 router.get('/',isLoggedIn, (req, res) => {
-    //find user restaurants data using user id and user restaurants
+    //find user restaurants data using user id and user  restaurants
     db.user.findByPk(res.locals.currentUser.id, {include: [db.restaurant] })
     .then(foundUser => {
      const names = foundUser.restaurants
@@ -26,11 +26,13 @@ router.get('/',isLoggedIn, (req, res) => {
 //-------------POST route to add a restaurant on users profile----//
 router.post('/add',isLoggedIn,(req, res) => {
     // console.log(req.body);
+    // find restauratns by id and current user using current user id //
     db.restaurant.findByPk(req.body.restaurantId)
     .then(foundRestaurant => {
       db.user.findByPk(res.locals.currentUser.id)
     .then( foundUser => {
         console.log(foundUser)
+        //added the found user and found restaurant
        foundRestaurant.addUser(foundUser)
     })
     .catch(error => {
@@ -39,7 +41,9 @@ router.post('/add',isLoggedIn,(req, res) => {
     })
 })
 
+//show page to edit restaurants, only logged in users can edit
 router.get('/edit/:id' ,isLoggedIn, (req, res) => {
+
     db.restaurant.findOne({
         where: { id: req.params.id } 
       })
@@ -80,7 +84,7 @@ router.get('/:id',isLoggedIn,(req, res) => {
 //---------------DELETE a user favorite restaurant----//      
 router.delete('/:id' ,isLoggedIn, (req, res) => {
     console.log('DELETE')
-   
+   //remove restaurants from a user by the join table id's
      db.userRestaurant.destroy({
        where: {restaurantId: req.params.id, userId:res.locals.currentUser.id }
      }) 
