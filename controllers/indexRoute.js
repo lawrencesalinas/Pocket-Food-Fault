@@ -25,17 +25,15 @@ router.get('/', (req, res) => {
       const zipcode = data.address.postal_code
       const phoneNumber = data.restaurant_phone
       const restaurantCode = data.restaurant_id
-    
-      const menu = data.menus
+      
   
   // -add requested data to api restaurant database-//
       db.restaurant.findOrCreate({  
         where: {name: name, address: address, hours: hours, phoneNumber: phoneNumber, restaurantCode:restaurantCode, city:city, state:state, zipcode:zipcode}
        })
        .then(created =>{
-      
+
        })
-      
        .catch(error => {
         console.log(error )
       })
