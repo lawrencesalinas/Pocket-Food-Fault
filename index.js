@@ -38,39 +38,15 @@ app.use((req, res, next) => {
     // before every route, attach the flash messages and current user to res.locals
     res.locals.alerts = req.flash();
     res.locals.currentUser = req.user;
-    
-   
     next()
 })
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
-
-
-// home route
+app.use('/restaurants', require('./controllers/restaurant.js'))
 app.get('/', (req, res)=> {
-
-
-    // res.send(apiResponse)
     res.render('home')
 })
-
-
-
-
-
-
-
-
-// profile route
-// app.get('/profile', isLoggedIn, (req, res)=>{
-//     res.render('profile.ejs')
-// })
-
-app.use('/travelBuddy', require('./controllers/indexRoute.js'))
-app.use('/profile', require('./controllers/profile.js'))
-app.use('/profile/restaurants', require('./controllers/restaurantRoute.js'))
-app.use('/menus', require('./controllers/menus.js'))
 
 app.listen(process.env.PORT  || 3000, ()=>{
     console.log(`process.env.SUPER_SECRET_SECRET ${process.env.SUPER_SECRET_SECRET}`)

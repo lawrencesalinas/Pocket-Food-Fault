@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
 const db = require('../models')
 const restaurant = require('../models/restaurant')
 const user = require('../models/user')
@@ -11,7 +10,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 //-----------GET route to render a list of the users favorite restaurants--//
 router.get('/',isLoggedIn, (req, res) => {
     //find user restaurants data using user id and user  restaurants
-    db.user.findByPk(res.locals.currentUser.id, {include: [db.restaurant] })
+    db.user.findByPk(req.user.id, {include: [db.restaurant] })
     .then(foundUser => {
      const names = foundUser.restaurants
     res.render('profile/restaurants/index.ejs' ,{results:names})
@@ -24,12 +23,12 @@ router.get('/',isLoggedIn, (req, res) => {
 
 
 //-------------POST route to add a restaurant on users profile----//
-router.post('/add',isLoggedIn,(req, res) => {
+router.post('/',isLoggedIn,(req, res) => {
     // console.log(req.body);
     // find restauratns by id and current user using current user id //
     db.restaurant.findByPk(req.body.restaurantId)
     .then(foundRestaurant => {
-      db.user.findByPk(res.locals.currentUser.id)
+      db.user.findByPk(req.user.id)
     .then( foundUser => {
         console.log(foundUser)
         //added the found user and found restaurant
@@ -95,6 +94,7 @@ router.delete('/:id' ,isLoggedIn, (req, res) => {
     res.redirect('/profile/restaurants')
   })
     })
+
 
 
 module.exports = router

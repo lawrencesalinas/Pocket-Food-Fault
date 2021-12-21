@@ -1,6 +1,5 @@
 
 
-
 <h2>Restaurants around   </h2>
 
 <% if(results == undefined) {%>
@@ -11,8 +10,8 @@
         
       
             <div id = "results-page">
-                <a class = login-out href="/travelBuddy/<%=restaurant.id%>">
-                <%=restaurant.name%>
+                <a class = login-out href="/restaurants/<%=restaurant.restaurant_id%>">
+                <%=restaurant.restaurant_name%>
             </a>
         </div>
      

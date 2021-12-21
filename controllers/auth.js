@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 const passport = require('../config/ppConfig.js')
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 
 router.get('/signup', (req, res)=>{
@@ -53,5 +54,9 @@ router.get('/logout', (req, res)=>{
     req.flash('Success! You\'re logged out.')
     res.redirect('/')
 })
+
+router.get('/profile',isLoggedIn, (req, res) => {
+    res.render('profile/profileIndex.ejs')
+  })
 
 module.exports = router
