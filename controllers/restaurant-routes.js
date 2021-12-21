@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
   let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&fullmenu=true&key=${process.env.NEW_API}`
   axios.get(docuMenuTest)
   .then(apiResponse => {
-    const formData = apiResponse.data.data
+    let formData = apiResponse.data.data
     // console.log(formData)
-    res.render('restaurants/results.ejs', {results: formData, zipCode})
+    res.render('restaurants/results.ejs', {results: formData, zipcode: zipCode})
    })
 })
     
@@ -26,15 +26,16 @@ router.get('/:id', (req, res) => {
   .then(apiResponse => {
       let resData = apiResponse.data.result
       let menuItems = []
+      //data for the menus
       resData.menus.forEach(menu =>{
         menu.menu_sections.forEach(items => {
             // console.log(items)
-            items.menu_items.forEach(items =>{
-              menuItems.push(items);
-            })
+          items.menu_items.forEach(items =>{
+            menuItems.push(items);
+          })
         })
       })
-          res.render('restaurants/detail.ejs', {results:resData, menus: menuItems})
+  res.render('restaurants/detail.ejs', {results:resData, menus: menuItems})
   })
 })
 

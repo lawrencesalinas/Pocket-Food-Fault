@@ -1,4 +1,4 @@
-<h2>Restaurants around</h2>
+<h2>Restaurants around <%= zipcode %></h2>
     <% if(results == undefined) {%>
             <h3>results not found</h3>
     <% } %>
@@ -6,7 +6,14 @@
     <%results.forEach(restaurant => { %>
         <div id = "results-page">
                 <a class = login-out href="/restaurants/<%=restaurant.restaurant_id%>">
-                <%=restaurant.restaurant_name%>
+                <%=restaurant.restaurant_name%><br> cuisine(s): 
+                <% restaurant.cuisines.forEach(cuisine=> { %>
+                    <% if(cuisine == ''){   %>
+                            n/a  
+                    <% } else {  %>
+                    <small><%=cuisine%></small>,
+                     <% } %>
+                <%  }) %>
             </a>
         </div>
     <% })%>

@@ -55,8 +55,6 @@ router.get('/logout', (req, res)=>{
     res.redirect('/')
 })
 
-router.get('/profile',isLoggedIn, (req, res) => {
-    res.render('profile/profileIndex.ejs')
-  })
+
 
 module.exports = router

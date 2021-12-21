@@ -11,20 +11,18 @@
   <h3>Phone: <%= results.restaurant_phone %></h3>
   <% if(results.cuisines == '') {%>
     <h3>Cuisines: n/a</h3>
-<% } else { %>
-  <h3>Cuisines:<% results.cuisines.forEach(cuisine => { %>
+  <% } else { %>
+  <h3>  Cuisines:<% results.cuisines.forEach(cuisine => { %>
         <small><%= cuisine %></small>    
-  <% }) %> </h3>
-  <%} %>
+      <%})%> </h3>
+  <% } %>
+
   <div class = "menu">
-  
   <h2>Menu<% menus.forEach(menu => { %>
                 <h4><%= menu.name %> :$<%=menu.price%></h4> 
                 <small><%= menu.description %></small>       
-            <% }) %> </h2> 
-            </div>  
-            
-    
+          <% }) %> </h2> 
+  </div>  
   <br>
     <% if (!currentUser) { %>
           <small>log in or sign up to add info and add to your profile</small>
