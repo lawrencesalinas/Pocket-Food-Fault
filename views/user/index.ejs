@@ -3,7 +3,7 @@
 <div class = "profile-restaurants">
   <ul>
       <% results.forEach(restaurant =>{ %>
-          <a class = "my" href = "./restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
+          <a class = "my" href = "../restaurants/<%=restaurant.restaurantCode%>"><%= restaurant.name %></a>
           <%= restaurant.restaurantId%><br>
           <form method = "POST" action= "/profile/restaurants/<%= restaurant.id%>?_method=DELETE">
             <button type="submit" class="btn btn-danger">Remove From Faves</button>

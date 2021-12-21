@@ -18,6 +18,15 @@ router.get('/', (req, res) => {
     
 //------------------------------------------------------------------------//
 
+router.get('/comments', (req, res) => {
+  res.render('restaurants/comments')
+})
+
+
+
+
+
+
 //----------detailed restaurant info -----------------//
 router.get('/:id', (req, res) => {
   let restaurantId = req.params.id
@@ -38,6 +47,8 @@ router.get('/:id', (req, res) => {
   res.render('restaurants/detail.ejs', {results:resData, menus: menuItems})
   })
 })
+
+
 
 
 //update route

@@ -17,10 +17,10 @@ router.get('/restaurants',isLoggedIn, (req, res) => {
     //find user restaurants data using user id and user restaurants
     db.user.findByPk(req.user.id, {include: [db.restaurant] })
     .then(foundUser => {
-     const names = foundUser.restaurants
-      console.log(foundUser);
+     const restaurantNames = foundUser.restaurants
+      console.log(foundUser.restaurants)
      
-    res.render('user/index.ejs' ,{results:names})
+    res.render('user/index.ejs' ,{results:restaurantNames})
     })
        .catch(error => {
         console.log(error)
@@ -31,36 +31,22 @@ router.get('/restaurants',isLoggedIn, (req, res) => {
 
 //-------------POST route to add a restaurant on users profile----//
 router.post('/restaurants',isLoggedIn,(req, res) => {
-    console.log(req.body);
-    // find restauratns by id and current user using current user id //
+    console.log(req.body.restaurantCode)
+    console.log(req.body.address);
+    // we create and save the restauand current user using current user id //
     db.restaurant.findOrCreate({
-     where: {name: req.body.name}
+      where: {
+        name: req.body.name,
+        address: req.body.address,
+        restaurantCode: req.body.restaurantCode
+      }
     })
-    .then(foundRestaurant => {
-      console.log(foundRestaurant)
-      db.user.findByPk(req.user.id)
-        .then( foundUser => {
-          // console.log(foundUser)
-          //added the found user and found restaurant
-          foundRestaurant.addUser(foundUser)
-      })
-    .catch(error => {
-        console.log(error)
+    .then(([restaurant, created]) => {
+        db.user.findByPk(req.user.id)
+        .then(user => {
+            user.addRestaurant(restaurant)
+        })
     })
-  })
-    
-    // db.restaurant.findByPk(req.body.restaurantId)
-    // .then(foundRestaurant => {
-    //   db.user.findByPk(req.user.id)
-    // .then( foundUser => {
-    //     console.log(foundUser)
-    //     //added the found user and found restaurant
-    //    foundRestaurant.addUser(foundUser)
-    // })
-    // .catch(error => {
-    //     console.log(error)
-    // })
-    // })
 })
 
 //show page to edit restaurants, only logged in users can edit
@@ -82,6 +68,7 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
       })
   })
     
+// router.get('comments', )
 
 
 //------------GET route for users' detailed restaurants----//

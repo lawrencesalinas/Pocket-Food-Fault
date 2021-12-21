@@ -17,15 +17,9 @@
       <%})%> </h3>
   <% } %>
 
-  <div class = "menu">
-  <h2>Menu<% menus.forEach(menu => { %>
-                <h4><%= menu.name %> :$<%=menu.price%></h4> 
-                <small><%= menu.description %></small>       
-          <% }) %> </h2> 
-  </div>  
-  <br>
+ 
     <% if (!currentUser) { %>
-          <small>log in or sign up to add info and add to your profile</small>
+          <small>log in or sign up to see menu, pricing info and add to your profile</small>
     <% } else { %>
           <form method = "POST" action = "/profile/restaurants">
             <input hidden type = "text" name = "name" value = "<%= results.restaurant_name %>">
@@ -39,6 +33,13 @@
           <form action = "/profile/restaurants/edit/<%= results.restaurant_id %>">
             <input type = "submit" class="btn btn-dark" value = "Edit this restaurant">
           </form>
+
+          <div class = "menu">
+            <h2>Menu<% menus.forEach(menu => { %>
+                          <h4><%= menu.name %> :$<%=menu.price%></h4> 
+                          <small><%= menu.description %></small>       
+                    <% }) %> </h2> 
+            </div>  
     <% } %>
 
 
