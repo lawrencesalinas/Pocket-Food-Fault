@@ -1,32 +1,47 @@
 
 <div class = "detail-page">
-<h1><%= name %></h1>
-<br>
-<h3>Address: <%= address  %></h3>
-<h3>hours: <%= hours %> </h3>
-<h3>Phone: <%= phoneNumber %></h3>
-<h6>restaurant code: <%= restaurantCode %></h6>
-
-
-<br>
-<% if (!currentUser) { %>
-    <small>log in or sign up to add info and add to your profile</small>
+  <h1><%= results.restaurant_name %></h1>
+  <br>
+  <h3>Address: <%= results.address.formatted  %></h3>
+  <% if(results.hours == '') {%>
+    <h3>hours: n/a</h3>
   <% } else { %>
-    <form method = "POST" action = "/profile/restaurants">
-        <input hidden type = "text" name = "name" value = "<%= name %>">
-        <input hidden type = "text" name = "address" value = "<%= address %>">
-        <input hidden type = "text" name = "hours" value = "<%= hours %>">
-        <input hidden type = "text" name = "phoneNumber" value = "<%= phoneNumber %>">
-        <input hidden type = "text" name = "restaurantCode" value = "<%= restaurantCode %>">
-        <input hidden type = "text" name = "restaurantId" value = "<%= restaurantId %>">
-        <button type="submit" class="btn btn-secondary"  >Add to your profile</button>
-    </form>
-    <br>
-    <form action = "/profile/restaurants/edit/<%= restaurantId %>">
-      <input type = "submit" class="btn btn-dark" value = "Edit this restaurant">
-    </form>
-    
+  <h3>hours: <%= results.hours %> </h3>
   <% } %>
+  <h3>Phone: <%= results.restaurant_phone %></h3>
+  <% if(results.cuisines == '') {%>
+    <h3>Cuisines: n/a</h3>
+<% } else { %>
+  <h3>Cuisines:<% results.cuisines.forEach(cuisine => { %>
+        <small><%= cuisine %></small>    
+  <% }) %> </h3>
+  <%} %>
+  <div class = "menu">
+  
+  <h2>Menu<% menus.forEach(menu => { %>
+                <h4><%= menu.name %> :$<%=menu.price%></h4> 
+                <small><%= menu.description %></small>       
+            <% }) %> </h2> 
+            </div>  
+            
+    
+  <br>
+    <% if (!currentUser) { %>
+          <small>log in or sign up to add info and add to your profile</small>
+    <% } else { %>
+          <form method = "POST" action = "/profile/restaurants">
+            <input hidden type = "text" name = "name" value = "<%= results.restaurant_name %>">
+            <input hidden type = "text" name = "address" value = "<%= results.address.formatted %>">
+            <input hidden type = "text" name = "hours" value = "<%= results.hours %>">
+            <input hidden type = "text" name = "phoneNumber" value = "<%= results.restaurant_phone %>">
+            <input hidden type = "text" name = "restaurantCode" value = "<%= results.restaurant_id %>">
+            <button type="submit" class="btn btn-secondary"  >Add to your profile</button>
+          </form>
+          <br>
+          <form action = "/profile/restaurants/edit/<%= results.restaurant_id %>">
+            <input type = "submit" class="btn btn-dark" value = "Edit this restaurant">
+          </form>
+    <% } %>
 
 
-  </div>
+</div>

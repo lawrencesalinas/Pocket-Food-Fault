@@ -1,26 +1,21 @@
-
-
 <div class = "edit-page">
-
-<h1><%= name %></h1>
-<br>
-<h3>Address: <%= address  %></h3>
-<h3>hours: <%= hours %> </h3>
-<h3>Phone: <%= phoneNumber %></h3>
-<h6>restaurant code: <%= restaurantCode %></h6>
-<br>
-<form method="POST" action="/travelBuddy/<%=restaurantId%>/?_method=PUT">
-    <label>Name</label>
-    <input type="text"  class="form-control" id= "putForm1" name="name" value="<%= name %>">
-    <label>Address</label>
-    <input type="text" class="form-control" id= "putForm2" name="address" value="<%= address %>">
-    <label>hours</label>
-    <input type="text" class="form-control" id= "putForm3" name="hours" value="<%= hours %>">
-    <label>Phone</label>
-    <input type="text" class="form-control" id= "putForm5" name="phoneNumber" value="<%= phoneNumber %>">
- 
-    <input hidden type="text" class="form-control" id= "putForm4" name="restaurantId" value="<%= restaurantId %>">
-    <input type="submit" class="btn btn-success">
-</form>
-
+    <h1><%= name %></h1>
+    <br>
+    <h3>Address: <%= address  %></h3>
+    <h3>hours: <%= hours %> </h3>
+    <h3>Phone: <%= phoneNumber %></h3>
+    <h6>restaurant code: <%= restaurantCode %></h6>
+    <br>
+    <form method="POST" action="/travelBuddy/<%=restaurantId%>/?_method=PUT">
+        <label>Name</label>
+        <input type="text"  class="form-control" id= "putForm1" name="name" value="<%= name %>">
+        <label>Address</label>
+        <input type="text" class="form-control" id= "putForm2" name="address" value="<%= address %>">
+        <label>hours</label>
+        <input type="text" class="form-control" id= "putForm3" name="hours" value="<%= hours %>">
+        <label>Phone</label>
+        <input type="text" class="form-control" id= "putForm5" name="phoneNumber" value="<%= phoneNumber %>">
+        <input hidden type="text" class="form-control" id= "putForm4" name="restaurantId" value="<%= restaurantId %>">
+        <input type="submit" class="btn btn-success">
+    </form>
 </div>

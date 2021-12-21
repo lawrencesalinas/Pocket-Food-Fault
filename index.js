@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
-app.use('/restaurants', require('./controllers/restaurant.js'))
+app.use('/restaurants', require('./controllers/restaurant-routes.js'))
 app.get('/', (req, res)=> {
     res.render('home')
 })

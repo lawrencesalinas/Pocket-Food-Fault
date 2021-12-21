@@ -1,22 +1,15 @@
-
-
-<h2>Restaurants around   </h2>
-
-<% if(results == undefined) {%>
-    <h3>results not found</h3>
-<% } %>
+<h2>Restaurants around</h2>
+    <% if(results == undefined) {%>
+            <h3>results not found</h3>
+    <% } %>
 <ul>
     <%results.forEach(restaurant => { %>
-        
-      
-            <div id = "results-page">
+        <div id = "results-page">
                 <a class = login-out href="/restaurants/<%=restaurant.restaurant_id%>">
                 <%=restaurant.restaurant_name%>
             </a>
         </div>
-     
-<% })%>
-
+    <% })%>
 </ul>
 
 <form action = "/">
