@@ -11,14 +11,8 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
       restaurantId: {
         type: Sequelize.BIGINT
-      },
-      restaurantCode: {
-        type: Sequelize.BIGINT        
       },
       createdAt: {
         allowNull: false,

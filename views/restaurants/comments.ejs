@@ -6,19 +6,22 @@
         <input type="submit" class="btn btn-success">
     </form>
 </div>
-
 <div class = 'review-content'>
-    <p><%= restaurant.restaurant_name %> reviews</p>
+<p><%= restaurant.restaurant_name %> reviews</p>
+<%reviews.forEach(review => { %>
     
-        <% results.forEach(review =>{ %>
-            <% if (!currentUser) { %>
-                <p><%= review.comment %></p>
-          <% } else { %>
-            <p><%= review.comment %></p>
-            <form action ="/restaurants/reviews/edit/<%= review.id %>">
-    <input type = "submit" class="btn btn-danger" value = "Edit comment"">
-  </form>
-<%} %>
-        <%  })  %>
+    <% if(currentUser.id == review.userId){  %>
+        <div class = "comment">
+        <p><%= review.comment %></p>
+        </div>
+    <form action ="/restaurants/reviews/edit/<%= review.id %>">
+        <input type = "submit" class="btn btn-danger"  id = "edit" value = "Edit comment"">
+    </form>
+    
+   <% } else { %>
+   <p><%= review.comment %></p>
+   <% } %>
+ <% }) %>
 </div>
+
 

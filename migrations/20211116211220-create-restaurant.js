@@ -17,12 +17,6 @@ module.exports = {
       hours: {
         type: Sequelize.STRING
       },
-      cuisine: {
-        type: Sequelize.STRING
-      },
-      menu: {
-        type: Sequelize.STRING
-      },
       phoneNumber: {
         type: Sequelize.STRING
       },

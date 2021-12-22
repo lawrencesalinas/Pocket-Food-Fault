@@ -49,53 +49,13 @@ router.post('/restaurants',isLoggedIn,(req, res) => {
     })
 })
 
-//show page to edit restaurants, only logged in users can edit
-router.get('/edit/:id' ,isLoggedIn, (req, res) => {
-
-    db.restaurant.findOne({
-        where: { id: req.params.id } 
-      })
-      .then(foundRestaurant =>{
-          console.log(foundRestaurant)
-          res.render('user/edit.ejs', 
-          {name: foundRestaurant.name, address: foundRestaurant.address, 
-          hours: foundRestaurant.hours, phoneNumber: foundRestaurant.phoneNumber, 
-          restaurantCode: foundRestaurant.restaurantCode, restaurantId: foundRestaurant.id })
-        
-      })
-      .catch(error => {
-        console.log(error )
-      })
-  })
-    
-// router.get('comments', )
-
-
-//------------GET route for users' detailed restaurants----//
-// router.get('/:id',isLoggedIn,(req, res) => {
-  
-//     db.restaurant.findOne({
-//       where: { id: req.params.id } 
-//     })
-//     .then(foundRestaurant =>{
-//         res.render('profile/restaurants/detail.ejs', 
-//         {name: foundRestaurant.name, address: foundRestaurant.address, 
-//         hours: foundRestaurant.hours, phoneNumber: foundRestaurant.phoneNumber, 
-//         restaurantCode: foundRestaurant.restaurantCode, cuisine:foundRestaurant.cuisine, restaurantId: foundRestaurant.id })
-//     })
-//     .catch(error => {
-//       console.log(error )
-//     })
-// })
-
-
 
 //---------------DELETE a user favorite restaurant----//      
-router.delete('/:id' ,isLoggedIn, (req, res) => {
+router.delete('restaurants/:id' ,isLoggedIn, (req, res) => {
     console.log('DELETE')
    //remove restaurants from a user by the join table id's
      db.userRestaurant.destroy({
-       where: {restaurantId: req.params.id, userId:res.locals.currentUser.id }
+       where: {restaurantId: req.params.id, userId:req.user.id }
      }) 
   .then(deletedItem => {
     if(deletedItem === 1){
