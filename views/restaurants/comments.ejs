@@ -3,25 +3,28 @@
     <p>wite a review for <%= restaurant.restaurant_name %></p>
     <form method = 'POST' action = '/restaurants/reviews/<%= restaurant.restaurant_id %>'>
         <textarea id="commentBox" class="form-control" cols="86" rows ="20" name="comment"></textarea>
+        <input hidden type = "text" name = "reviewOwner" value = '<%= currentUser.name %>'>
         <input type="submit" class="btn btn-success">
     </form>
 </div>
 <div class = 'review-content'>
-<p><%= restaurant.restaurant_name %> reviews</p>
-<%reviews.forEach(review => { %>
-    
-    <% if(currentUser.id == review.userId){  %>
-        <div class = "comment">
-        <p><%= review.comment %></p>
-        </div>
-    <form action ="/restaurants/reviews/edit/<%= review.id %>">
-        <input type = "submit" class="btn btn-danger"  id = "edit" value = "Edit comment"">
-    </form>
-    
-   <% } else { %>
-   <p><%= review.comment %></p>
-   <% } %>
- <% }) %>
+    <p><%= restaurant.restaurant_name %> reviews</p>
+        <%reviews.forEach(review => { %>
+            <% if(currentUser.id == review.userId){  %>
+                <div class = "comment">
+                    <p><%= review.comment %></p>
+                    <small>-<%=review.reviewOwner%></small>
+                </div>
+                <form action ="/restaurants/reviews/edit/<%= review.id %>">
+                    <input type = "submit" class="btn btn-dark"  id = "edit" value = "Edit comment"">
+                </form>
+            <% } else { %>
+                <div class = "comment">
+                    <p><%= review.comment %></p>
+                    <small>-<%=review.reviewOwner%></small>
+                </div>
+        <% } %>
+    <% }) %>
 </div>
 
 

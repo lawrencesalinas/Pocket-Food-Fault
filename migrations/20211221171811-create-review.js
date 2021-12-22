@@ -11,6 +11,9 @@ module.exports = {
       comment: {
         type: Sequelize.STRING
       },
+      reviewOwner: {
+        type: Sequelize.STRING
+      },
       userId: {
         type: Sequelize.INTEGER
       },

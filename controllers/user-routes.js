@@ -31,13 +31,10 @@ router.get('/restaurants',isLoggedIn, (req, res) => {
 
 // -------------POST route to add a restaurant on users profile----//
 router.post('/restaurants',isLoggedIn,(req, res) => {
-    console.log(req.body.restaurantCode)
-    console.log(req.body.address);
-    // we create and save the restauand current user using current user id //
+    // console.log(req.body.restaurantCode)
     db.restaurant.findOrCreate({
       where: {
         name: req.body.name,
-        address: req.body.address,
         restaurantCode: req.body.restaurantCode
       }
     })
@@ -51,7 +48,7 @@ router.post('/restaurants',isLoggedIn,(req, res) => {
 
 
 //---------------DELETE a user favorite restaurant----//      
-router.delete('restaurants/:id' ,isLoggedIn, (req, res) => {
+router.delete('/restaurants/:id' ,isLoggedIn, (req, res) => {
     console.log('DELETE')
    //remove restaurants from a user by the join table id's
      db.userRestaurant.destroy({

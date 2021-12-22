@@ -18,6 +18,9 @@ router.get('/', (req, res) => {
     // console.log(formData)
     res.render('restaurants/results.ejs', {results: formData, zipcode: zipCode})
    })
+  .catch(error => {
+    console.log(error)
+  })
 })
     
 //------------------------------------------------------------------------//
@@ -43,106 +46,88 @@ router.get('/:id', (req, res) => {
       })
   res.render('restaurants/detail.ejs', {results:resData, menus: menuItems})
   })
+  .catch(error => {
+    console.log(error)
+  })
 })
-
-
-
-
-
 
 
 //------------------REVIEW ROUTES---------------------------------------------------------//
 
 //-----------show route for reviews of a specific restaurant--------//
-router.get('/reviews/:id', (req, res) => {
+router.get('/reviews/:id',isLoggedIn, (req, res) => {
   console.log(req.body);
   let restaurantId = req.params.id
   let  docuMenuApi = `https://api.documenu.com/v2//restaurant/${restaurantId}?key=${process.env.NEW_API}`
-axios.get(docuMenuApi)
-.then(apiResponse => {
-  let resData = apiResponse.data.result
-  db.review.findAll({
-    where: {restaurantId:req.params.id}
+  axios.get(docuMenuApi)
+  .then(apiResponse => {
+    let resData = apiResponse.data.result
+    // query reviews where the restaurantId is the same as the params 
+    // to create a specific review page for every restaurant
+    db.review.findAll({
+      where: {restaurantId:req.params.id}
+    })
+    .then(reviews =>{
+      res.render('restaurants/comments.ejs', {reviews:reviews,restaurant:resData} )
+    })
+    .catch(error => {
+      console.log(error)
+    })
   })
-  .then(reviews =>{
-
-    res.render('restaurants/comments.ejs', {reviews:reviews,restaurant:resData} )
-  })
-})
 })
    
-
-// //----adding a user review to the userReview database-----//
-// router.post('/reviews/:id',isLoggedIn, (req, res) => {
-// // console.log('req.body',req.body.comment);
-// // console.log('req.user.id:', req.user.id)
-//   db.review.findOrCreate({
-//     where: ({comment:req.body.comment,
-//              userId:req.user.id,
-//              restaurantId: req.params.id
-//             })
-//   })
-//   .then(([review, created]) => {
-//     // console.log('hello',review);
-//     // console.log('createaed',created);
-//     db.user.findByPk(req.user.id)
-//       .then(user => {
-//         user.addReview(review)
-//       })
-//       .then(user => {
-//         res.redirect(`/restaurants/reviews/${req.params.id}`)
-//       })
-//     })
-//   })
-
-
 //----adding a user review to the userReview database-----//
 router.post('/reviews/:id',isLoggedIn, (req, res) => {
-  console.log('req.body',req.body.comment);
+  // console.log('req.body',req.body.comment);
   // console.log('req.user.id:', req.user.id)
+  console.log(req.body);
+   console.log('req.user.id:', req.body.reviewOwner)
     db.user.findByPk(req.user.id)
     .then(user=> {
       console.log('adding review to this user', user.id)
       user.createReview({
         // req.body coming from comments.ejs
-        comment:req.body.comment,
+        comment: req.body.comment,
         // created and added  restaurantId for the review model to correlate a specific review page 
         // for a sppecific restaurant since we're not saving the restaurants to our database 
-        restaurantId: req.params.id
+        restaurantId: req.params.id,
+        reviewOwner: req.body.reviewOwner 
       }).then(review=> {
-        console.log(review);
+        // console.log(review);
+        // instantly add review to the page
+        res.redirect(`/restaurants/reviews/${req.params.id}`)
       })
-    })  
+      .catch(error => {
+        console.log(error)
+      })
+    })
 })
 
-
-
-
   //----------Show route to edit form for reviews------------------//
-  // router.get('/reviews/edit/:id' ,isLoggedIn, (req, res) => {
-  //   console.log('params', req.params.id);
-  //  db.review.findOne({ 
-  //    where: ({id:req.params.id})
-  //  })
-  //  .then(review => {
-  //     console.log('editget',review)
-  //   res.render('restaurants/edit.ejs', {results:review})
-  //  })
-  // })
+  router.get('/reviews/edit/:id' ,isLoggedIn, (req, res) => {
+   // console.log('params', req.params.id);
+   db.review.findOne({ 
+     where: ({id:req.params.id})
+   })
+   .then(review => {
+      // console.log('editGET',review)
+      res.render('restaurants/edit.ejs', {results:review})
+   })
+  })
 
 // //--------------Put route to edit reviews---------------------//
-//   router.put('/reviews/:idx',isLoggedIn, (req, res) => {
-//     console.log('body', req.body);
-//     db.review.update({
-//          comment:req.body.comment
-//     }, {
-//          where: { id: req.body.reviewId } 
-//     })
-//        .then(foundReview =>{   
-//           res.redirect(`/restaurants/reviews/${req.body.restaurantId}`);
-//         })
+  router.put('/reviews/:idx',isLoggedIn, (req, res) => {
+    // console.log('body', req.body);
+    db.review.update({
+         comment:req.body.comment
+    }, {
+         where: { id: req.body.reviewId } 
+    })
+    .then(foundReview =>{   
+      res.redirect(`/restaurants/reviews/${req.body.restaurantId}`);
+    })
    
-//   })
+  })
 
 
 
