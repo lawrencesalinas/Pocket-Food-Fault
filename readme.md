@@ -3,8 +3,9 @@
 
 ## UserStories
 
-Search for restaurants information using  a zipcode anywhere in the country.
+Search for restaurants information using  a zipcode anywhere in the country. Food Vault gives the users the ability to see information about a restaurant's hours, address, menu items or item pricing.
 
+users can also add or delete a restaurant  profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  a restaurant and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available.
 
 ## tech stack
 + Javascript
@@ -24,9 +25,9 @@ Search for restaurants information using  a zipcode anywhere in the country.
 | -----| ----------- | ------ | ------------ |
 |  GET | `/restaurants`|
 |  GET | `/restaurants/:id`
-| POST | 
-| GET
-|
+| POST |
+| GET  |`/reviews/:id`|
+
 
 
 ## Models
