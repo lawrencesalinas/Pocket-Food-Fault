@@ -17,7 +17,8 @@
       <%})%> </h3>
   <% } %>
 
- 
+  
+  
     <% if (!currentUser) { %>
           <small>log in or sign up to see menu, pricing info and add to your profile</small>
     <% } else { %>
@@ -30,8 +31,8 @@
             <button type="submit" class="btn btn-secondary"  >Add to your profile</button>
           </form>
           <br>
-          <form action = "/profile/restaurants/edit/<%= results.restaurant_id %>">
-            <input type = "submit" class="btn btn-dark" value = "Edit this restaurant">
+          <form action = "/restaurants/reviews/<%= results.restaurant_id %>">
+            <input type = "submit" class="btn btn-danger" value = "Reviews"">
           </form>
 
           <div class = "menu">
@@ -42,5 +43,6 @@
             </div>  
     <% } %>
 
+   
 
 </div>

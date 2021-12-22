@@ -1,0 +1,14 @@
+
+
+
+
+<div class = 'reviews'>
+<form method="POST" action="/restaurants/reviews/<%= results.id %>/?_method=PUT">
+    <label>edit review</label>
+    <textarea id="commentBox" class="form-control" cols="86" rows ="20" name="comment"></textarea>
+    <input hidden type = "text" name = "reviewId" value = '<%= results.id %>'>
+    <input hidden type = "text" name = "restaurantId" value = '<%= results.restaurantId %>'>
+    <input type="submit" class="btn btn-success">
+    </form>
+
+</div>    

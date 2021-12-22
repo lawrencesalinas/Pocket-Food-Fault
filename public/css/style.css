@@ -143,8 +143,19 @@ body{
     font-size: 40px;
     font-weight:900
     /* background:url('https://cdn.dribbble.com/users/210183/screenshots/6310828/loop_1.gif'); */
- 
-    
- 
 }
 
+#commentBox{
+    width:50%;
+    height: 5em;
+}
+
+.reviews{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.review-content{
+    margin-top: 4%;
+    margin-left: 5%;
+}

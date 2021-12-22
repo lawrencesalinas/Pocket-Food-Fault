@@ -11,18 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
     models.restaurant.belongsToMany(models.user, {through: "userRestaurant"})
-    // models.restaurant.belongsTo(models.city)
 
     }
   };
   restaurant.init({
     name: DataTypes.STRING, 
-    cityId: DataTypes.BIGINT,
     address: DataTypes.STRING,
     hours: DataTypes.STRING,
-    city: DataTypes.STRING,
     zipcode: DataTypes.INTEGER,
-    state: DataTypes.STRING,
     cuisine: DataTypes.STRING,
     menu: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,

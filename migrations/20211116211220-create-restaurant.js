@@ -11,19 +11,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },                                                 
-      cityId: {
-        type: Sequelize.BIGINT
-      },
       address: {                         
        type: Sequelize.STRING
       },
       hours: {
-        type: Sequelize.STRING
-      },
-      city: {
-        type: Sequelize.STRING
-      },
-      state: {
         type: Sequelize.STRING
       },
       cuisine: {

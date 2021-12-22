@@ -29,7 +29,7 @@ router.get('/restaurants',isLoggedIn, (req, res) => {
 
 
 
-//-------------POST route to add a restaurant on users profile----//
+// -------------POST route to add a restaurant on users profile----//
 router.post('/restaurants',isLoggedIn,(req, res) => {
     console.log(req.body.restaurantCode)
     console.log(req.body.address);
@@ -57,7 +57,7 @@ router.get('/edit/:id' ,isLoggedIn, (req, res) => {
       })
       .then(foundRestaurant =>{
           console.log(foundRestaurant)
-          res.render('profile/restaurants/edit.ejs', 
+          res.render('user/edit.ejs', 
           {name: foundRestaurant.name, address: foundRestaurant.address, 
           hours: foundRestaurant.hours, phoneNumber: foundRestaurant.phoneNumber, 
           restaurantCode: foundRestaurant.restaurantCode, restaurantId: foundRestaurant.id })
