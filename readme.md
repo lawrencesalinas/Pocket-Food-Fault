@@ -1,7 +1,7 @@
 
 # FoodVault
 
-## UserStories
+## About
 
 Search for restaurants information using  a zipcode anywhere in the country. Food Vault gives the users the ability to see information about a restaurant's hours, address, menu items or item pricing.
 
@@ -55,7 +55,8 @@ users can also add or delete a restaurant  profile to save the hassle of searchi
 + add menus and pricing.
 + add geolocation to locate restaurants.
 
-!<img width="1000" alt="Screen Shot 2021-12-13 at 4 06 10 AM" src="https://user-images.githubusercontent.com/22379194/145783206-e6cf058c-0c98-4cab-b8e5-1c0129b98d67.png">
+!
 
+![Screen Shot 2021-12-22 at 3 24 44 PM](https://user-images.githubusercontent.com/22379194/147152580-fd6dbd7d-b050-40dc-b8aa-55a2c177c3b2.png)
 
 
