@@ -21,12 +21,17 @@ users can also add or delete a restaurant  profile to save the hassle of searchi
 ## API to use
 + Documenu API
 
-|METHOD| URL pattern | Action | Description  |
-| -----| ----------- | ------ | ------------ |
-|  GET | `/restaurants`|
-|  GET | `/restaurants/:id`
-| POST |
-| GET  |`/reviews/:id`|
+|METHOD| URL pattern | Action(CRUD) | 
+| -----| ----------- | ------ | 
+| GET | `/restaurants`| Index(Read)     |              
+| GET | `/restaurants/:id`|Show(Read)              |
+| POST |`/restaurants` |Create(Create)        |              
+| GET  |`/reviews/:id`|Index(Read)       |              
+| POST  |`/reviews/:id`|Create(create)       |              
+| GET  |`/reviews/edit/:id`|Edit(Read)       |           
+| PUT  |`/reviews/:id`|Update(Update)       |             
+| PUT  | `profile/restaurants`| Index(Read)      |              
+| DELETE  | `profile/restaurants/:id`| Index(Read) |              
 
 
 

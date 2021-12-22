@@ -22,7 +22,7 @@
     <% if (!currentUser) { %>
           <small>log in or sign up to see menu, pricing info and add to your profile</small>
     <% } else { %>
-          <form method = "POST" action = "/profile/restaurants">
+          <form method = "POST" action = "/restaurants">
             <input hidden type = "text" name = "name" value = "<%= results.restaurant_name %>">
             <input hidden type = "text" name = "address" value = "<%= results.address.formatted %>">
             <input hidden type = "text" name = "hours" value = "<%= results.hours %>">

@@ -7,7 +7,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 const review = require('../models/review')
 
 
-//------------------Render search results------------------------------//
+//------------------Restaurant Routes------------------------------//
 router.get('/', (req, res) => {
 //-request data from the api-//
   let  zipCode = req.query.zipCode
@@ -23,6 +23,24 @@ router.get('/', (req, res) => {
   })
 })
     
+
+// -------------POST route to add a restaurant on users profile----//
+router.post('/',isLoggedIn,(req, res) => {
+  // console.log(req.body.restaurantCode)
+  db.restaurant.findOrCreate({
+    where: {
+      name: req.body.name,
+      restaurantCode: req.body.restaurantCode
+    }
+  })
+  .then(([restaurant, created]) => {
+      db.user.findByPk(req.user.id)
+      .then(user => {
+          user.addRestaurant(restaurant)
+      })
+  })
+})
+
 //------------------------------------------------------------------------//
 
 
@@ -116,7 +134,7 @@ router.post('/reviews/:id',isLoggedIn, (req, res) => {
   })
 
 // //--------------Put route to edit reviews---------------------//
-  router.put('/reviews/:idx',isLoggedIn, (req, res) => {
+  router.put('/reviews/:id',isLoggedIn, (req, res) => {
     // console.log('body', req.body);
     db.review.update({
          comment:req.body.comment
