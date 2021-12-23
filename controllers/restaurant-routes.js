@@ -124,13 +124,16 @@ router.post('/reviews/:id',isLoggedIn, (req, res) => {
   //----------Show route to edit form for reviews------------------//
   router.get('/reviews/edit/:id' ,isLoggedIn, (req, res) => {
    // console.log('params', req.params.id);
-   db.review.findOne({ 
-     where: ({id:req.params.id})
-   })
-   .then(review => {
+    db.review.findOne({ 
+      where: ({id:req.params.id})
+    })
+    .then(review => {
       // console.log('editGET',review)
       res.render('restaurants/edit.ejs', {results:review})
-   })
+     })
+    .catch(error => {
+      console.log(error)
+    })
   })
 
 // //--------------Put route to edit reviews---------------------//
@@ -144,8 +147,10 @@ router.post('/reviews/:id',isLoggedIn, (req, res) => {
     .then(foundReview =>{   
       res.redirect(`/restaurants/reviews/${req.body.restaurantId}`);
     })
-   
-  })
+    .catch(error => {
+      console.log(error)
+    })
+   })
 
 
 

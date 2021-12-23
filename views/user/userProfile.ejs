@@ -1,19 +1,20 @@
-
 <div class="profile-container">
   <div class="profile-content">
-    <br>
-  <h2><%= currentUser.name %>'s Profile</h2>
+    <br />
+    <h2><%= currentUser.name %>'s Profile</h2>
 
+    <h2><a class="my" href="/profile/restaurants">My Restaurants</a></h2>
 
-
-<h2><a class = "my" href="/profile/restaurants">My Restaurants</a></h2>
-
-<div class = "searchBox-profile" >
-  <form method = "GET" action = "/restaurants">
-  <label for= "categories">Search restaurants by zipcode:</label>
-  <input class="form-control" id = "searchBox" type = "text" name = "zipCode">
-  <input type= "submit" class="btn btn-success" value= "Search Restaurants">
-  </form>
-</div>
-</div>
+    <div class="searchBox-profile">
+      <form method="GET" action="/restaurants">
+        <label for="categories">Search restaurants by zipcode:</label>
+        <input class="form-control" id="searchBox" type="text" name="zipCode" />
+        <input
+          type="submit"
+          class="btn btn-success"
+          value="Search Restaurants"
+        />
+      </form>
+    </div>
+  </div>
 </div>

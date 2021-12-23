@@ -35,13 +35,16 @@ router.delete('/restaurants/:id' ,isLoggedIn, (req, res) => {
      db.userRestaurant.destroy({
        where: {restaurantId: req.params.id, userId:req.user.id }
      }) 
-  .then(deletedItem => {
-    if(deletedItem === 1){
-      console.log('Deleted successfully');
-    }
-    res.redirect('/profile/restaurants')
-  })
+    .then(deletedItem => {
+      if(deletedItem === 1){
+        console.log('Deleted successfully');
+      }
+      res.redirect('/profile/restaurants')
     })
+    .catch(error => {
+      console.log(error)
+  })
+})
 
 
 
