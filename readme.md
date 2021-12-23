@@ -5,9 +5,9 @@ https://pacific-lake-01463.herokuapp.com/
 
 ## About
 
-Search for restaurants information using  a zipcode anywhere in the country. Food Vault gives the users the ability to see information about a restaurant's hours, address, menu items or item pricing.
+this app allows users to search for restaurants information using  a zipcode anywhere in the country. Pocket-Food-Vault gives the users the ability to see information about a restaurant's hours, address, menu items, reviews , etc.
 
-users can also add or delete a restaurant  profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  a restaurant and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available.
+users can also add or delete a restaurant to their profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available.
 
 ## tech stack
 + Javascript
@@ -22,6 +22,8 @@ users can also add or delete a restaurant  profile to save the hassle of searchi
 
 ## API to use
 + Documenu API
+
+## Routes
 
 |METHOD| URL pattern | Action(CRUD) | 
 | -----| ----------- | ------ | 
@@ -57,7 +59,7 @@ users can also add or delete a restaurant  profile to save the hassle of searchi
 + add menus and pricing.
 + add geolocation to locate restaurants.
 
-!
+
 
 ![Screen Shot 2021-12-22 at 3 24 44 PM](https://user-images.githubusercontent.com/22379194/147152580-fd6dbd7d-b050-40dc-b8aa-55a2c177c3b2.png)
 
