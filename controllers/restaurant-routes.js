@@ -38,9 +38,16 @@ router.post('/',isLoggedIn,(req, res) => {
       .then(user => {
           user.addRestaurant(restaurant)
       })
+      .then(user => {
+        res.redirect(`/restaurants/message`)
+      })
   })
+  
 })
 
+router.get('/message', isLoggedIn, (req, res) => {
+  res.render('restaurants/message.ejs')
+})
 //------------------------------------------------------------------------//
 
 
