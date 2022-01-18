@@ -2,14 +2,14 @@
 
 
 # Pocket Food Vault
-Visit the live version of  [Pocket Food Vault](https://pocket-food-vault.herokuapp.com/).  
+
 <img width="1288" alt="Screen Shot 2022-01-18 at 3 59 42 AM" src="https://user-images.githubusercontent.com/22379194/149904450-9c37d930-30f7-4bc3-98bc-5ed1d02e7f81.png">
 
 ## About
 
 this app allows users to search for restaurants information using  a zipcode anywhere in the country. Pocket-Food-Vault gives the users the ability to see information about a restaurant's hours, address, menu items, reviews , etc.
 
-users can also add or delete a restaurant to their profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available.
+users can also add or delete a restaurant to their profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available. Visit the live version of  [Pocket Food Vault](https://pocket-food-vault.herokuapp.com/).  
 
 ## tech stack
 + Javascript
