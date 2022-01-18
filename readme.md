@@ -64,6 +64,18 @@ users can also add or delete a restaurant to their profile to save the hassle of
 ## ERD 
 ![Screen Shot 2021-12-22 at 3 24 44 PM](https://user-images.githubusercontent.com/22379194/147152580-fd6dbd7d-b050-40dc-b8aa-55a2c177c3b2.png)
 
-## Installation 
+## Local Setup
+If you'd like to run this application on your own local server:
+
+* Fork and clone this repository
+* Run npm install to install dependencies
+* Create a .env file and in that file
+* Set SUPER_SECRET_SECRET to a string
+* Obtain an API key from Documenu
+* Run sequelize db:migrate to run migrations
+* Run nodemon to start this application
+* Go to localhost:3000 on your browser and create an account
+* Search for restaurants by zip code 
+
 
 
