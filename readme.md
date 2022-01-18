@@ -2,7 +2,7 @@
 
 
 # Pocket Food Vault
-https://pocket-food-vault.herokuapp.com/
+Visit the live version of  [Pocket Food Vault](https://pocket-food-vault.herokuapp.com/).  
 <img width="1288" alt="Screen Shot 2022-01-18 at 3 59 42 AM" src="https://user-images.githubusercontent.com/22379194/149904450-9c37d930-30f7-4bc3-98bc-5ed1d02e7f81.png">
 
 ## About
