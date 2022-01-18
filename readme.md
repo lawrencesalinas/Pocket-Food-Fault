@@ -3,7 +3,8 @@
 
 # FoodVault
 https://pocket-food-vault.herokuapp.com/
-<img width="1440" alt="Screen Shot 2022-01-18 at 3 55 34 AM" src="https://user-images.githubusercontent.com/22379194/149903727-75351dfe-8c81-4b0f-907b-6fd4b42a03b4.png">
+<img width="1288" alt="Screen Shot 2022-01-18 at 3 59 42 AM" src="https://user-images.githubusercontent.com/22379194/149904450-9c37d930-30f7-4bc3-98bc-5ed1d02e7f81.png">
+
 ## About
 
 this app allows users to search for restaurants information using  a zipcode anywhere in the country. Pocket-Food-Vault gives the users the ability to see information about a restaurant's hours, address, menu items, reviews , etc.
@@ -57,7 +58,6 @@ users can also add or delete a restaurant to their profile to save the hassle of
 + create links to go  to the  home page and profile page.
 
 ## Stretch
-+ add menus and pricing.
 + add geolocation to locate restaurants.
 
 
