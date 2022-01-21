@@ -7,7 +7,7 @@
 
 ## About
 
-this app allows users to search for restaurants information using  a zipcode anywhere in the country. Pocket-Food-Vault gives the users the ability to see information about a restaurant's hours, address, menu items, reviews , etc.
+Pocket Food Vault allows the users to search for restaurants information using  a zipcode anywhere in the country. Pocket-Food-Vault gives the users the ability to see information about a restaurant's hours, address, menu items, reviews , etc.
 
 users can also add or delete a restaurant to their profile to save the hassle of searching for information about their favorite restaurants. users can also leave a review about their expereience about  and also see other users reviews. if the user had a change of heart about the restaurant, an edit a review functionality is available. 
 
